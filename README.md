@@ -50,5 +50,4 @@ La classe `AMovingPlatform` ([MovingPlatform.h](Le%20Voyage%20de%20Torri-main/So
 
 ## Crédits
 
-- **Base du projet :** [ObstacleAssault](https://github.com/denyskryvytskyi/ObstacleAssault) de Denys Kryvytskyi, réalisé dans le cadre du cours [Unreal Engine 5 C++ Developer](https://www.udemy.com/course/unrealcourse/).
 - **Assets :** Stylized Nature Set, Rain Forest, Minimalistic Menu et Vefects Easy Impact Frames (Fab / Unreal Marketplace), ainsi que Learning Kit Games, Learning Kit Robots et Hour of Code (Epic Games). Ces assets appartiennent à leurs auteurs et restent soumis à leur propre licence.
