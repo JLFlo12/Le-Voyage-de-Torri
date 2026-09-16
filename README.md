@@ -1,53 +1,101 @@
+<div align="center">
+
 # Le Voyage de Torri
 
-Jeu 3D à la troisième personne réalisé avec **Unreal Engine 5.7** (Blueprints et C++).
+**Torri's Journey: a third-person 3D game made with Unreal Engine 5.7**
 
-<!-- Tu peux ajouter ici l'histoire de Torri, le but du jeu et des captures d'écran. -->
+🇬🇧 English · [🇫🇷 Français](README.fr.md)
 
-## Le jeu
+![Unreal Engine](https://img.shields.io/badge/Unreal%20Engine-5.7-0E1128?logo=unrealengine&logoColor=white)
+![C++](https://img.shields.io/badge/C++-00599C?logo=cplusplus&logoColor=white)
+![Blueprints](https://img.shields.io/badge/Blueprints-visual%20scripting-1E90FF)
+![Platform](https://img.shields.io/badge/Platform-Windows-0078D6)
+![License: MIT (code)](https://img.shields.io/badge/License-MIT%20(code)-yellow.svg)
 
-- **Menu principal** pour lancer une partie, régler les options, voir les crédits ou quitter, avec un écran de chargement et un menu pause.
-- **Options** réglables : général, graphismes, audio et contrôles. La liste des touches se trouve dans *Options > Contrôles*.
-- **Un monde nature stylisé** à explorer, avec des effets de papillons, de feuilles qui tombent et de vent.
-- **Une forêt tropicale** (niveau `Rain_Forest`).
-- **Un parcours d'obstacles** avec des plateformes qui bougent et qui tournent (niveau `ObstacleAssault/Maps/Main`).
+</div>
 
-## Prérequis
+---
 
-- [Unreal Engine 5.7](https://www.unrealengine.com/download), installé via l'Epic Games Launcher
-- **Visual Studio 2022** avec la charge de travail *Développement de jeux en C++*, nécessaire pour compiler le code du projet. Le fichier `.vsconfig` du projet propose automatiquement les bons composants à l'ouverture.
-- Environ **10 Go** d'espace disque : ~3 Go pour le dépôt, le reste pour la compilation et les shaders.
+## About
+
+*Le Voyage de Torri* is a personal third-person 3D game built with **Unreal Engine 5.7**, using both **Blueprints** and **C++**. You explore a stylized natural world, a tropical rainforest and an obstacle course with moving platforms.
+
+## Features
+
+- **Main menu** to start a game, change options, view the credits or quit, with a loading screen and a pause menu
+- **Settings** for general, graphics, audio and controls. The key bindings are listed in *Options > Controls*.
+- **A stylized nature world** to explore, with butterfly, falling leaf and wind effects
+- **A tropical rainforest** level
+- **An obstacle course** with platforms that move and rotate, driven by C++ code
+
+## Levels
+
+| Level | Map | Description |
+| --- | --- | --- |
+| Main menu | `Content/Stylized_Nature_Set/MainMenu/MainMenu` | Start map of the game and the editor |
+| Nature world | `Content/Stylized_Nature_Set/Demo/Maps/Demo_Level` | Main level, launched from the menu |
+| Rainforest | `Content/Rain_Forest/Maps/Rain_Forest` | Tropical forest |
+| Obstacle course | `Content/ObstacleAssault/Maps/Main` | Moving and rotating platforms |
+
+## Requirements
+
+- **Windows 10/11**
+- [Unreal Engine 5.7](https://www.unrealengine.com/download), installed with the Epic Games Launcher
+- **Visual Studio 2022** with the *Game development with C++* workload, needed to compile the project's C++ code. The project's `.vsconfig` file suggests the right components when you open it.
+- About **10 GB** of free disk space: ~3 GB for the repository, the rest for compilation and shaders
 
 ## Installation
 
-1. Cloner le dépôt (~2,6 Go à télécharger) :
+1. Clone the repository (~2.6 GB download):
+
    ```bash
-   git clone https://github.com/JLFlo12/Le-Voyage-de-Torri.git
+   git clone --depth 1 https://github.com/JLFlo12/Le-Voyage-de-Torri.git
    ```
-2. Ouvrir `Le Voyage de Torri-main/ObstacleAssault.uproject`.
-3. Quand Unreal demande de reconstruire les modules manquants (*missing modules*), répondre **Oui**.
-4. Au premier lancement, la compilation des shaders peut prendre un moment.
-5. Le projet s'ouvre sur le menu principal : cliquer sur **Play** dans l'éditeur, puis lancer la partie depuis le menu.
 
-## Structure du projet
+   `--depth 1` skips the Git history, which makes the download faster.
 
-| Dossier | Contenu |
+2. Open `Le Voyage de Torri-main/ObstacleAssault.uproject`.
+3. When Unreal asks to rebuild the *missing modules*, click **Yes**.
+4. The first launch compiles the shaders, which can take a while.
+5. The project opens on the main menu. Click **Play** in the editor, then start a game from the menu.
+
+> [!TIP]
+> To test a single level, open its map from the Content Browser (see [Levels](#levels)) and click **Play**.
+
+## Project structure
+
+The Unreal project lives in the `Le Voyage de Torri-main/` folder.
+
+| Folder | Contents |
 | --- | --- |
-| `Source/ObstacleAssault` | Code C++ (plateformes mobiles) |
-| `Content/Stylized_Nature_Set/MainMenu` | Carte et widgets du menu principal (démarrage du jeu) |
-| `Content/Stylized_Nature_Set/Demo/Maps` | Niveau principal, lancé depuis le menu |
-| `Content/Rain_Forest` | Niveau forêt tropicale |
-| `Content/ObstacleAssault` | Parcours d'obstacles et ses Blueprints |
-| `Config` | Configuration du projet (carte de démarrage, entrées…) |
+| `Source/ObstacleAssault` | C++ code (moving platforms) |
+| `Content/Stylized_Nature_Set/MainMenu` | Main menu map and widgets (game start) |
+| `Content/Stylized_Nature_Set/Demo/Maps` | Main level, launched from the menu |
+| `Content/Rain_Forest` | Rainforest level |
+| `Content/ObstacleAssault` | Obstacle course and its Blueprints |
+| `Content/…` | Other asset packs used by the levels (see [Credits](#credits)) |
+| `Config` | Project configuration (start map, inputs…) |
+| `Plugins/VisualStudioTools` | Microsoft plugin for Visual Studio integration |
 
-## Code C++
+## C++ code
 
-La classe `AMovingPlatform` ([MovingPlatform.h](Le%20Voyage%20de%20Torri-main/Source/ObstacleAssault/MovingPlatform.h)) fait bouger et tourner une plateforme. Trois propriétés se règlent directement dans l'éditeur :
+The `AMovingPlatform` class ([MovingPlatform.h](Le%20Voyage%20de%20Torri-main/Source/ObstacleAssault/MovingPlatform.h), [MovingPlatform.cpp](Le%20Voyage%20de%20Torri-main/Source/ObstacleAssault/MovingPlatform.cpp)) moves and rotates a platform every frame. When the platform has travelled further than `MaxMoveDistance`, it turns back.
 
-- `MoveVelocity` : direction et vitesse du déplacement
-- `MaxMoveDistance` : distance parcourue avant que la plateforme fasse demi-tour
-- `RotationVelocity` : vitesse de rotation
+You can set three properties directly in the editor:
 
-## Crédits
+| Property | Type | Role |
+| --- | --- | --- |
+| `MoveVelocity` | `FVector` | Direction and speed of movement |
+| `MaxMoveDistance` | `float` | Distance travelled before the platform turns back |
+| `RotationVelocity` | `FRotator` | Rotation speed |
 
-- **Assets :** Stylized Nature Set, Rain Forest, Minimalistic Menu et Vefects Easy Impact Frames (Fab / Unreal Marketplace), ainsi que Learning Kit Games, Learning Kit Robots et Hour of Code (Epic Games). Ces assets appartiennent à leurs auteurs et restent soumis à leur propre licence.
+## Credits
+
+**Assets:** Stylized Nature Set, Rain Forest, Minimalistic Menu and Vefects Easy Impact Frames (Fab / Unreal Marketplace), plus Learning Kit Games, Learning Kit Robots and Hour of Code (Epic Games).
+
+These assets belong to their authors and are subject to their own licenses.
+
+## License
+
+The original code in this repository (mainly `Source/`) is released under the [MIT License](LICENSE).
+Third-party assets and plugins are **not** covered by this license (see [Credits](#credits)).
